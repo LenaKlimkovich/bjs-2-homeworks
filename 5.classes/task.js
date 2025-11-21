@@ -8,7 +8,7 @@ class PrintEditionItem {
     }
 
     fix() {
-       this.state * 1.5;
+       return this.state * 1.5;
     }
 
     set state(state) {
@@ -50,14 +50,14 @@ class NovelBook extends Book {
 
 class FantasticBook extends Book {
     constructor(author, name, releaseDate, pagesCount, state = 100, type = "fantastic") {
-        super(author, nam, releaseDate, pagesCount, state);
+        super(author, name, releaseDate, pagesCount, state);
         this.type = type;
     }
 }
 
 class DetectiveBook extends Book {
     constructor(author, name, releaseDate, pagesCount, state = 100, type = "detective") {
-        super(author, name, releaseDate, pagesCount, state, author);
+        super(author, name, releaseDate, pagesCount, state);
         this.type = type;
     }
 }
@@ -74,13 +74,13 @@ class Library {
     }
 
     findBookBy(type, value){
-         if(this.books.includes( book => book.type === type){
+      for (let i = 0; i < this.books.length; i++) {
+        if (this.books[i].type === value){
+            return this.books[i]
+        }
 
-         }
-            // который в качестве аргументов будет принимать ключ 
-        //  для проведения поиска (тип, автор, название, год выпуска и пр.) 
-        //  и искомое значение. Метод должен возвращать
-        //   книгу в случае успеха и null, если запрошенная
-        //    книга не была найдена.
+     return null
     }
+}
+  
 }
