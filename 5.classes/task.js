@@ -34,30 +34,53 @@ class Magazine extends PrintEditionItem {
 
 
 class Book extends PrintEditionItem {
-    constructor(name, releaseDate, pagesCount, state = 100, type = "book", author) {
-        super(name, releaseDate, pagesCount, state, author);
+    constructor(author, name, releaseDate, pagesCount, state = 100, type = "book") {
+        super(author, name, releaseDate, pagesCount, state);
         this.type = type;
         this.author = author;
     }
 }
 
 class NovelBook extends Book {
-    constructor(name, releaseDate, pagesCount, state = 100, type = "novel", author) {
-        super(name, releaseDate, pagesCount, state, author);
+    constructor(author, name, releaseDate, pagesCount, state = 100, type = "novel") {
+        super(author, name, releaseDate, pagesCount, state);
         this.type = type;
     }
 }
 
 class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount, state = 100, type = "fantastic", author) {
-        super(name, releaseDate, pagesCount, state, author);
+    constructor(author, name, releaseDate, pagesCount, state = 100, type = "fantastic") {
+        super(author, nam, releaseDate, pagesCount, state);
         this.type = type;
     }
 }
 
 class DetectiveBook extends Book {
-    constructor(name, releaseDate, pagesCount, state = 100, type = "detective", author) {
-        super(name, releaseDate, pagesCount, state, author);
+    constructor(author, name, releaseDate, pagesCount, state = 100, type = "detective") {
+        super(author, name, releaseDate, pagesCount, state, author);
         this.type = type;
+    }
+}
+
+class Library {
+    constructor(name, books){
+        this.name = name;
+        this.books = [];
+    }
+    addBook(book){
+        if(book.state > 30){
+            this.books.push(book)
+        }
+    }
+
+    findBookBy(type, value){
+         if(this.books.includes( book => book.type === type){
+
+         }
+            // который в качестве аргументов будет принимать ключ 
+        //  для проведения поиска (тип, автор, название, год выпуска и пр.) 
+        //  и искомое значение. Метод должен возвращать
+        //   книгу в случае успеха и null, если запрошенная
+        //    книга не была найдена.
     }
 }
