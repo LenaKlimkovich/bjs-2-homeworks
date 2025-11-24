@@ -8,16 +8,21 @@ class PrintEditionItem {
     }
 
     fix() {
-       return this.state * 1.5;
-    }
-
-    set state(state) {
-        if (state < 0) {
-            this._state = 0;
-        } else if (state > 100) {
+        this._state = this.state * 1.5;
+        if (this._state > 100) {
             this._state = 100;
         }
-        this._state = state;
+        return this._state;
+    }
+
+    set state(value) {
+        if (value < 0) {
+            this._state = 0;
+        } else if (value > 100) {
+            this._state = 100;
+        } else {
+            this._state = value;
+        }
     }
 
     get state() {
@@ -35,7 +40,7 @@ class Magazine extends PrintEditionItem {
 
 class Book extends PrintEditionItem {
     constructor(author, name, releaseDate, pagesCount, state = 100, type = "book") {
-        super(author, name, releaseDate, pagesCount, state);
+        super(name, releaseDate, pagesCount, state);
         this.type = type;
         this.author = author;
     }
@@ -63,24 +68,73 @@ class DetectiveBook extends Book {
 }
 
 class Library {
-    constructor(name, books){
+    constructor(name, books) {
         this.name = name;
         this.books = [];
     }
-    addBook(book){
-        if(book.state > 30){
+    addBook(book) {
+        if (book.state > 30) {
             this.books.push(book)
         }
     }
 
-    findBookBy(type, value){
-      for (let i = 0; i < this.books.length; i++) {
-        if (this.books[i].type === value){
-            return this.books[i]
-        }
+    findBookBy(type, value) {
+        for (let i = 0; i < this.books.length; i++) {
+            if (this.books[i][type] === value) {
+                return this.books[i]
 
-     return null
+            }
+        }
+        return null
     }
+
+    giveBookByName(bookName) {
+        let index = this.books.findIndex(book => book.name === bookName)
+        if (index >= 0) {
+            this.books.splice(index, 1)
+            return this.books[index]
+        }
+        return null;
+
+    }
+
 }
-  
+
+class Student {
+    constructor(name, marks) {
+        this.name = name
+        this.marks = {};
+    }
+    addMark(mark, subject) {
+        if (mark < 2 || mark > 5) {
+            return;
+        } else if (!Object.keys(this.marks).includes(subject)) {
+            this.marks[subject] = []
+            this.marks[subject].push(mark)
+        } else {
+            this.marks[subject].push(mark)
+        }
+    }
+
+    getAverageBySubject(subject) {
+        if (!Object.keys(this.marks).includes(subject)) {
+            return 0;
+        }
+        let marksSum = this.marks[subject].reduce((acc, subject) => acc + subject, 0)
+        return marksSum / this.marks[subject].length
+    }
+
+    getAverage() {
+        let subjects = Object.keys(this.marks)
+        let totalSum = 0
+        for (let i = 0; i < subjects.length; i++) {
+            totalSum += this.marks[subjects[i]].reduce((acc, mark, index, arr) => {
+                const sum = acc + mark
+                if (index === arr.length - 1) {
+                    return sum / arr.length
+                }
+            })
+        }
+        return totalSum / subjects.length
+    }
 }
