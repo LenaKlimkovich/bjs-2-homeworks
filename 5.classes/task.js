@@ -68,9 +68,9 @@ class DetectiveBook extends Book {
 }
 
 class Library {
-    constructor(name, books) {
+    constructor(name, books = []) {
         this.name = name;
-        this.books = [];
+        this.books = books;
     }
     addBook(book) {
         if (book.state > 30) {
@@ -100,9 +100,9 @@ class Library {
 }
 
 class Student {
-    constructor(name, marks) {
+    constructor(name, marks = {}) {
         this.name = name
-        this.marks = {};
+        this.marks = marks;
     }
     addMark(mark, subject) {
         if (mark < 2 || mark > 5) {
