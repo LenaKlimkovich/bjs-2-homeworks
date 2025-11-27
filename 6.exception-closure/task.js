@@ -37,8 +37,8 @@ class Triangle {
          return new Triangle(side1, side2, side3)
      } catch (error) {
          return {
-             perimeter: "Ошибка! Треугольник не существует",
-             area: "Ошибка! Треугольник не существует"
-         };
+            get perimeter() { return 'Ошибка! Треугольник не существует'; },
+            get area() { return 'Ошибка! Треугольник не существует'; }
+        };
      }
  }
