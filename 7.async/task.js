@@ -1,6 +1,6 @@
 class AlarmClock {
-    constructor(alarmCollection = [], intervalId = null) {
-        this.alarmCollection = alarmCollection;
+    constructor(alarmCollection, intervalId = null) {
+        this.alarmCollection = [];
         this.intervalId = intervalId;
     }
 
@@ -25,11 +25,11 @@ class AlarmClock {
     }
 
     getCurrentFormattedTime() {
-        const date = new Date
-        console.log(date.toLocaleTimeString("ru-Ru", {
+        const date = new Date()
+        return date.toLocaleTimeString("ru-Ru", {
             hour: '2-digit',
             minute: '2-digit'
-        }));
+        });
     }
 
     start() {
