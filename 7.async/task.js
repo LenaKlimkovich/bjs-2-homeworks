@@ -1,6 +1,6 @@
 class AlarmClock {
-    constructor(alarmCollection, intervalId = null) {
-        this.alarmCollection = [];
+    constructor(alarmCollection = [], intervalId = null) {
+        this.alarmCollection = alarmCollection;
         this.intervalId = intervalId;
     }
 
