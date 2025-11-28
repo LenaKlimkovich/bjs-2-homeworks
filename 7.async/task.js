@@ -20,8 +20,7 @@ class AlarmClock {
     }
 
     removeClock(time) {
-        let filtered = this.alarmCollection.filter(alarm => alarm.time === time);
-        this.alarmCollection.splice(filtered, 1);
+          this.alarmCollection = this.alarmCollection.filter(alarm => alarm.time !== time);
     }
 
     getCurrentFormattedTime() {
